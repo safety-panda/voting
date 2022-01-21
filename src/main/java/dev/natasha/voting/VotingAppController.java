@@ -5,10 +5,15 @@ import javafx.scene.control.Label;
 
 public class VotingAppController {
     @FXML
-    private Label welcomeText;
+    private Label candidateSelectionText;
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    protected void onCandidateOneButtonClick() {
+        candidateSelectionText.setText("You voted for Candidate One!");
+    }
+
+    @FXML
+    protected void onCandidateTwoButtonClick() {
+        candidateSelectionText.setText("You voted for Candidate Two!");
     }
 }
