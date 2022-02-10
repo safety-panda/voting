@@ -1,4 +1,4 @@
-package dev.natasha.voting;
+package dev.natasha.voting.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
