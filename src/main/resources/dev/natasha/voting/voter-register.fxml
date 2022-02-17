@@ -14,13 +14,17 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Label fx:id="labelText" alignment="CENTER" layoutX="52.0" layoutY="71.0" prefHeight="19.0" prefWidth="222.0" text="Election Results">
+                <Label fx:id="labelText" alignment="CENTER" layoutX="6.0" layoutY="41.0" prefHeight="19.0" prefWidth="294.0" text="Please enter your details to register as a Voter">
                     <font>
                         <Font size="15.0" />
                     </font>
                 </Label>
-            <Button fx:id="resultsButton" layoutX="123.0" layoutY="119.0" mnemonicParsing="false" onAction="#onResultsButtonClick" text="Get Results" />
-            <Label fx:id="resultsText" alignment="CENTER" contentDisplay="CENTER" layoutX="78.0" layoutY="161.0" prefHeight="65.0" prefWidth="183.0" />
+            <Button layoutX="119.0" layoutY="118.0" mnemonicParsing="false" onAction="#onVoterRegisterSubmitButton" prefHeight="25.0" prefWidth="68.0" text="Submit">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+                <Label fx:id="voterRegisterText" alignment="CENTER" contentDisplay="CENTER" layoutX="17.0" layoutY="170.0" prefHeight="65.0" prefWidth="271.0" textAlignment="CENTER" />
             </children>
         </Pane>
     </children>

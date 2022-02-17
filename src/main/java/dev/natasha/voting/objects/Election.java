@@ -18,7 +18,7 @@ public class Election {
         candidateTwo++;
     }
 
-    public static Election getInstance() {
+    public static Election getElection() {
         if (instance == null) {
             instance = new Election();
         }

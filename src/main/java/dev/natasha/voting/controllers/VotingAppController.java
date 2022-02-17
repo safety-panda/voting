@@ -3,24 +3,16 @@ package dev.natasha.voting.controllers;
 import dev.natasha.voting.objects.Election;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
-import dev.natasha.voting.VotingApp;
 import dev.natasha.voting.navigator;
-import dev.natasha.voting.objects.Election;
 
 import java.io.IOException;
 
 public class VotingAppController {
-    private Election election = Election.getInstance();
+    private Election election = Election.getElection();
 
     @FXML
     private Label labelText;
-
-    @FXML
-    private MenuItem homeTab;
 
     @FXML
     protected void onHomeButtonClick() throws IOException {
@@ -38,7 +30,17 @@ public class VotingAppController {
 
     @FXML
     protected void onRegisterVoter() throws IOException {
-        // code
+        var stage = (Stage) labelText.getScene().getWindow();
+        stage.setScene(navigator.getScene("voter-register.fxml"));
+        stage.setTitle("Voter Register");
+    }
+
+    @FXML
+    private Label voterRegisterText;
+
+    @FXML
+    protected void onVoterRegisterSubmitButton() {
+        voterRegisterText.setText("Thank you." + System.lineSeparator() + "You just registered to vote.");
     }
 
     @FXML
@@ -46,20 +48,6 @@ public class VotingAppController {
         var stage = (Stage) labelText.getScene().getWindow();
         stage.setScene(navigator.getScene("voting-view.fxml"));
         stage.setTitle("Voting View");
-    }
-
-    @FXML
-    protected void onAuditorButtonClick() throws IOException {
-        var stage = (Stage) labelText.getScene().getWindow();
-        stage.setScene(navigator.getScene("results-view.fxml"));
-        stage.setTitle("Auditor View");
-    }
-
-    @FXML
-    protected void onAdministratorButtonClick() throws IOException {
-        var stage = (Stage) labelText.getScene().getWindow();
-        stage.setScene(navigator.getScene("results-view.fxml"));
-        stage.setTitle("Administrator View");
     }
 
     @FXML
@@ -75,6 +63,20 @@ public class VotingAppController {
     protected void onCandidateTwoButtonClick() {
         election.voteForCandidateTwo();
         candidateSelectionText.setText("You voted for Candidate Two!");
+    }
+
+    @FXML
+    protected void onAuditorButtonClick() throws IOException {
+        var stage = (Stage) labelText.getScene().getWindow();
+        stage.setScene(navigator.getScene("results-view.fxml"));
+        stage.setTitle("Auditor View");
+    }
+
+    @FXML
+    protected void onAdministratorButtonClick() throws IOException {
+        var stage = (Stage) labelText.getScene().getWindow();
+        stage.setScene(navigator.getScene("results-view.fxml"));
+        stage.setTitle("Administrator View");
     }
 
     @FXML
