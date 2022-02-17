@@ -15,7 +15,6 @@ import java.io.IOException;
 
 public class VotingAppController {
     private Election election = Election.getInstance();
-//    public Election election;
 
     @FXML
     private Label labelText;
@@ -24,7 +23,26 @@ public class VotingAppController {
     private MenuItem homeTab;
 
     @FXML
+    protected void onHomeButtonClick() throws IOException {
+        var stage = (Stage) labelText.getScene().getWindow();
+        stage.setScene(navigator.getScene("welcome-view.fxml"));
+        stage.setTitle("Voting App");
+    }
+
+    @FXML
     protected void onVoterButtonClick() throws IOException {
+        var stage = (Stage) labelText.getScene().getWindow();
+        stage.setScene(navigator.getScene("voter-view.fxml"));
+        stage.setTitle("Voter View");
+    }
+
+    @FXML
+    protected void onRegisterVoter() throws IOException {
+        // code
+    }
+
+    @FXML
+    protected void onVoteInElection() throws IOException {
         var stage = (Stage) labelText.getScene().getWindow();
         stage.setScene(navigator.getScene("voting-view.fxml"));
         stage.setTitle("Voting View");
@@ -38,13 +56,10 @@ public class VotingAppController {
     }
 
     @FXML
-    protected void onAdministratorButtonClick() {}
-
-    @FXML
-    protected void onHomeButtonClick() throws IOException {
+    protected void onAdministratorButtonClick() throws IOException {
         var stage = (Stage) labelText.getScene().getWindow();
-        stage.setScene(navigator.getScene("welcome-view.fxml"));
-        stage.setTitle("Voting App");
+        stage.setScene(navigator.getScene("results-view.fxml"));
+        stage.setTitle("Administrator View");
     }
 
     @FXML
@@ -52,11 +67,13 @@ public class VotingAppController {
 
     @FXML
     protected void onCandidateOneButtonClick() {
+        election.voteForCandidateOne();
         candidateSelectionText.setText("You voted for Candidate One!");
     }
 
     @FXML
     protected void onCandidateTwoButtonClick() {
+        election.voteForCandidateTwo();
         candidateSelectionText.setText("You voted for Candidate Two!");
     }
 
