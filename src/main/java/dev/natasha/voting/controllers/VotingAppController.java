@@ -6,10 +6,13 @@ import dev.natasha.voting.objects.User;
 import dev.natasha.voting.objects.Voter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import dev.natasha.voting.navigator;
 
 import java.io.IOException;
+import java.util.Random;
 
 public class VotingAppController {
     private Election election = Election.getElection();
@@ -39,11 +42,38 @@ public class VotingAppController {
     }
 
     @FXML
+    private TextField fNameField;
+
+    @FXML
+    private TextField lNameField;
+
+    @FXML
+    private TextField ageField;
+
+    @FXML
+    private TextArea addressField;
+
+    @FXML
     private Label voterRegisterText;
 
     @FXML
     protected void onVoterRegisterSubmitButton() {
-         Voter voter = new Voter();
+        // could totally do with some validator for empty fields (but it is only empty age field that throws an actual error)
+        String fName = fNameField.getText();
+        String lName = lNameField.getText();
+        String address = addressField.getText();
+
+        // need to get a try catch for non-numbers / empty field
+        int age = Integer.parseInt(ageField.getText());
+        // and validatator if under 18
+
+        Random r = new Random();
+        int randomInt = r.nextInt(100) + 1;
+
+        int id = randomInt;
+        boolean verified = true;
+
+        Voter voter = new Voter(id, verified, fName, lName, age, address);
 
         voterRegisterText.setText("Thank you." + System.lineSeparator() + "You just registered to vote." + System.lineSeparator() + "Voter ID: " + voter.getVoterID());
     }
