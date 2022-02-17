@@ -1,6 +1,9 @@
 package dev.natasha.voting.controllers;
 
 import dev.natasha.voting.objects.Election;
+import dev.natasha.voting.objects.User;
+//import dev.natasha.voting.objects.Voter;
+import dev.natasha.voting.objects.Voter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -40,7 +43,9 @@ public class VotingAppController {
 
     @FXML
     protected void onVoterRegisterSubmitButton() {
-        voterRegisterText.setText("Thank you." + System.lineSeparator() + "You just registered to vote.");
+         Voter voter = new Voter();
+
+        voterRegisterText.setText("Thank you." + System.lineSeparator() + "You just registered to vote." + System.lineSeparator() + "Voter ID: " + voter.getVoterID());
     }
 
     @FXML
