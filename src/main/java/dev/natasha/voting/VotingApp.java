@@ -1,6 +1,5 @@
 package dev.natasha.voting;
 
-import dev.natasha.voting.objects.Election;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

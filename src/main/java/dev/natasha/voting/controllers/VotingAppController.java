@@ -1,15 +1,15 @@
 package dev.natasha.voting.controllers;
 
 import dev.natasha.voting.objects.Election;
-import dev.natasha.voting.objects.User;
-//import dev.natasha.voting.objects.Voter;
 import dev.natasha.voting.objects.Voter;
+import dev.natasha.voting.navigator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import dev.natasha.voting.navigator;
+
 
 import java.io.IOException;
 import java.util.Random;
@@ -57,25 +57,28 @@ public class VotingAppController {
     private Label voterRegisterText;
 
     @FXML
-    protected void onVoterRegisterSubmitButton() {
-        // could totally do with some validator for empty fields (but it is only empty age field that throws an actual error)
-        String fName = fNameField.getText();
-        String lName = lNameField.getText();
-        String address = addressField.getText();
+    protected void onVoterRegisterSubmitButton() throws NumberFormatException {
+        try {
+            String fName = fNameField.getText();
+            String lName = lNameField.getText();
+            String address = addressField.getText();
+            int age = Integer.parseInt(ageField.getText());
 
-        // need to get a try catch for non-numbers / empty field
-        int age = Integer.parseInt(ageField.getText());
-        // and validatator if under 18
 
-        Random r = new Random();
-        int randomInt = r.nextInt(100) + 1;
+            Random r = new Random();
+            int randomInt = r.nextInt(100) + 1;
 
-        int id = randomInt;
-        boolean verified = true;
+            int id = randomInt;
+            boolean verified = true;
 
-        Voter voter = new Voter(id, verified, fName, lName, age, address);
+            Voter voter = new Voter(id, verified, fName, lName, age, address);
 
-        voterRegisterText.setText("Thank you." + System.lineSeparator() + "You just registered to vote." + System.lineSeparator() + "Voter ID: " + voter.getVoterID());
+            voterRegisterText.setText("Thank you." + System.lineSeparator() + "You just registered to vote." + System.lineSeparator() + "Voter ID: " + voter.getVoterID());
+
+        } catch (NumberFormatException e) {
+            voterRegisterText.setText("please enter a number for your age");
+        }
+
     }
 
     @FXML
